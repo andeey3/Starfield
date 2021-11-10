@@ -1,64 +1,68 @@
 class Particle {
   double myX, myY, myAngle, mySpeed;
   int myColor;
-  Particle () {
+  Particle() {
     mySpeed = Math.random()*10;
-    myAngle = Math.random () * (2Math.PI);
-    myX = Math.cos(myAngle)mySpeed +500;
-    myY = Math.sin(myAngle)mySpeed +500;
-    myColor = color((int)(Math.random()256), (int)(Math.random()256), (int)(Math.random()256));
+    myAngle = Math.random()*(Math.PI);
+    myX = Math.cos(myAngle)*mySpeed+300;
+    myY = Math.sin(myAngle)*mySpeed+300;
+    myColor = color(225);
   }
-  void move () {
-    myX = myX + (Math.cos(myAngle)mySpeed) ;
-    myY = myY + (Math.sin(myAngle)mySpeed) ;
+  void move()
+  {
+    myX = myX + (Math.cos(myAngle)*mySpeed);
+    myY = myY + (Math.sin(myAngle)*mySpeed);
   }
-  void show () {
-    fill(myColor);
+  void show()
+  {
+    fill(myColor);    
     noStroke();
-    ellipse((float) myX, (float)myY, 10, 10);
+    ellipse((float)myY, (float)myX, 10, 10);
   }
 }
-class OddballParticle extends Particle {
-  OddballParticle() {
+class OddBallParticle extends Particle {
+  OddBallParticle() {
     mySpeed = Math.random()*10;
-    myAngle = Math.random () * (2Math.PI);
-    myX = Math.cos(myAngle)mySpeed +500;
-    myY = Math.sin(myAngle)mySpeed +500;
-    myColor = color((int)(Math.random()256), (int)(Math.random()256), (int)(Math.random()256));
+    myAngle = Math.random()*(Math.PI);
+    myX = Math.cos(myAngle)*mySpeed +400;
+    myY = Math.sin(myAngle)*mySpeed +400;
+    myColor = color(25);
   }
-  void move () {
-  myX = myX + (Math.cos(myAngle)mySpeed) ;
-  myY = myY + (Math.sin(myAngle)mySpeed) ;
-}
-  void show () {
-    fill (255);
+  void move()
+  {
+    myX = myX + (Math.cos(myAngle)*mySpeed);
+    myY = myY + (Math.sin(myAngle)*mySpeed);
+  }
+  void show() {
+    fill(225);    
     ellipse ((float)myX, (float)myY, 50, 50);
   }
 }
-Particle [] one;
-void setup () {
-  frameRate(300); 
-  background(255);
-  size(1000, 1000);
-  one = new Particle [500];
-  for (int i = 0; i<6; i++) {
-    one [i] = new OddballParticle();
+Particle [] bob = new Particle [1000];
+void setup() {
+  size(500, 500);
+  frameRate(144);
+  for (int i = 0; i <4; i++) {
+    bob[i] = new OddBallParticle();
   }
-  for (int i = 6; i < one.length; i++) {
-    one [i] = new Particle ();
+  for (int i = 4; i < bob.length; i++) {
+    bob[i] = new Particle();
   }
 }
-void draw () {
-  background (0);
-  for (int i = 0; i < one.length; i++) {
-    one [i].move();
-    one [i].show();
+void draw() {
+  background(0);
+  pew();
+  for (int i = 0; i < bob.length; i++) {
+    bob[i].move();
+    bob[i].show();
   }
 }
-void mousePressed () { 
- background (0);
-  for (int i = 0; i < one.length; i++) {
-    one [i].move();
-    one [i].show();
-  }
+void pew() {
+  fill(178);
+  rect(150, 250, 100, 50);//mainbody
+  fill(84, 217, 252);
+  rect(170, 254, 60, 40);//inner tube
+  fill(226, 253, 28);
+  rect(250, 250, 20, 50);//barrel
 }
+
